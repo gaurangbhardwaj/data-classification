@@ -4,7 +4,7 @@
   "description": "This is csv-uploader-micro-service in node.js.",
   "main": "server.js",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node ./server.js"
