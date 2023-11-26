@@ -1,7 +1,7 @@
-import morgan from 'morgan'
-import bodyParser from 'body-parser'
-import compression from 'compression'
-import cors from 'cors'
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const cors = require('cors');
 
 module.exports = function (app) {
   // logs incoming requests with endpoint and response time

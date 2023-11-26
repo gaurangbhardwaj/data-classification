@@ -1,6 +1,5 @@
-import mongoose from 'mongoose'
-
-export default class DBConnection {
+const mongoose = require('mongoose');
+class DBConnection {
   static connect () {
     console.log('DB trying to connect on ' + new Date())
 
@@ -14,3 +13,5 @@ export default class DBConnection {
     return mongoose.connect(process.env.DB, options)
   }
 }
+
+module.exports = DBConnection;

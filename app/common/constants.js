@@ -1,4 +1,4 @@
-export const httpConstants = {
+const httpConstants = {
   METHOD_TYPE: {
     POST: "POST",
     GET: "GET",
@@ -54,23 +54,23 @@ export const httpConstants = {
   },
 };
 
-export const stringConstants = {
+const stringConstants = {
   SERVICE_STATUS_HTML:
     '<body style="font-family: Helvetica !important; background-color: black">' +
     '<div style="display: flex; flex:1; height: 100% ; justify-content: center; align-items: center; min-height: 100vh !important; font-size: 24px !important; color: #605DFF !important;">' +
     "Data classification service is working fine</div></body>",
 };
 
-export const genericConstants = {
+const genericConstants = {
   DEVICE_TYPE: {},
 };
 
-export const apiSuccessMessage = {
+const apiSuccessMessage = {
   GET_LOGS: "Information fetched successfully",
-  LOG_ADDED: "Log has been added successfully"
+  LOG_ADDED: "Log has been added successfully",
 };
 
-export const apiFailureMessage = {
+const apiFailureMessage = {
   INVALID_PARAMS: "Invalid Parameters",
   INVALID_REQUEST: "Invalid Request",
   INVALID_PAYMENT_TOKEN: "Invalid Payment Token",
@@ -82,6 +82,13 @@ export const apiFailureMessage = {
   SESSION_GENERATION: "Unable to generate session!",
   SESSION_EXPIRED: "Session Expired!",
   GET_LOGS: "Unable to get Log",
-  LOG_ADDED: "Unable to add Log"
+  LOG_ADDED: "Unable to add Log",
 };
 
+module.exports = {
+  httpConstants,
+  stringConstants,
+  genericConstants,
+  apiSuccessMessage,
+  apiFailureMessage,
+};

@@ -1,7 +1,7 @@
 "use strict";
-import { apiFailureMessage, httpConstants } from "../common/constants";
+const { apiFailureMessage, httpConstants } = require("../common/constants");
 
-export default class Utils {
+class Utils {
   static response(res, data, message, success, code) {
     const responseObj = {
       responseData: data,
@@ -106,3 +106,5 @@ export default class Utils {
     );
   }
 }
+
+module.exports = Utils;

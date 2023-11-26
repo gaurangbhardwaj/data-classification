@@ -1,8 +1,8 @@
-import APP from "express";
-import DBConnection from "./config/dbConnection";
-import Utils from "./app/utils";
-import routes from "./routes";
-import { httpConstants } from "./app/common/constants";
+const APP = require("express");
+const DBConnection = require("./config/dbConnection");
+const Utils = require("./app/utils");
+const routes = require("./routes");
+const { httpConstants } = require("./app/common/constants");
 
 const app = new APP();
 require("./config/express")(app);

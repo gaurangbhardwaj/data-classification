@@ -1,17 +1,12 @@
-import LogModel from "../../models/log";
-import { Types } from "mongoose";
-import moment from "moment";
-import { stringify } from "flatted";
+const LogModel = require("../../models/log");
+const { Types } = require("mongoose");
+const moment = require("moment");
+const { stringify } = require("flatted");
 
-export default class Manager {
-  addUserLog = async (req) => {
-    const logData = new LogModel({
-      userId: req.params.userId,
-      req: stringify(req),
-      status: "SUCCESS",
-    });
-    const userLog = await logData.save();
-    return await updateUserLogRes(userLog);
+class Manager {
+  addUserLog = async (userData) => {
+    const logData = new LogModel(userData);
+    return await logData.save();
   };
 
   getUserLogs = async (startDate, endDate) => {
@@ -42,7 +37,7 @@ export default class Manager {
               $cond: { if: { $eq: ["$status", "SUCCESS"] }, then: 1, else: 0 },
             },
           },
-          logsList: { $push: "$$ROOT" }
+          logsList: { $push: "$$ROOT" },
         },
       },
       {
@@ -61,14 +56,4 @@ export default class Manager {
   };
 }
 
-const updateUserLogRes = async (userLog) => {
-  return await LogModel.findOneAndUpdate(
-    { _id: new Types.ObjectId(userLog._id) },
-    {
-      $set: {
-        res: JSON.stringify(userLog),
-      },
-    },
-    { new: true }
-  );
-};
+module.exports = Manager;

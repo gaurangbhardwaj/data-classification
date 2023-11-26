@@ -1,12 +1,12 @@
-import Utils from "../../utils";
-import {
+const Utils = require("../../utils");
+const {
   httpConstants,
   apiSuccessMessage,
   apiFailureMessage,
-} from "../../common/constants";
-import LogManager from "./manager";
+} = require("../../common/constants");
+const LogManager = require("./manager");
 
-export default class Controller {
+class Controller {
   /**
    * Add User log
    * @param {*} req
@@ -14,7 +14,7 @@ export default class Controller {
    * @returns {Promise<void>}
    */
   addUserLog = async (req, res) => {
-    if (!req.params.userId)
+    if (!req.body || !req.body.userId)
       return Utils.response(
         res,
         {},
@@ -23,7 +23,7 @@ export default class Controller {
         httpConstants.RESPONSE_CODES.BAD_REQUEST
       );
     try {
-      const response = await new LogManager().addUserLog(req);
+      const response = await new LogManager().addUserLog(req.body);
       if (!response)
         return Utils.response(
           res,
@@ -32,13 +32,7 @@ export default class Controller {
           httpConstants.RESPONSE_STATUS.FAILURE,
           httpConstants.RESPONSE_CODES.SERVER_ERROR
         );
-      Utils.response(
-        res,
-        response,
-        apiSuccessMessage.LOG_ADDED,
-        httpConstants.RESPONSE_STATUS.SUCCESS,
-        httpConstants.RESPONSE_CODES.OK
-      );
+      return res.send("hello world");
     } catch (err) {
       Utils.response(
         res,
@@ -58,7 +52,10 @@ export default class Controller {
    */
   getUserLogs = async (req, res) => {
     try {
-      const response = await new LogManager().getUserLogs(req.query.startDate, req.query.endDate);
+      const response = await new LogManager().getUserLogs(
+        req.query.startDate,
+        req.query.endDate
+      );
       if (!response)
         return Utils.response(
           res,
@@ -85,3 +82,5 @@ export default class Controller {
     }
   };
 }
+
+module.exports = Controller;
