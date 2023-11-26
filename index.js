@@ -1,7 +1,7 @@
 const express = require("express");
 const DBConnection = require("./config/dbConnection");
 const Utils = require("./app/utils");
-const { httpConstants } = require("./app/common/constants");
+const { httpConstants, stringConstants } = require("./app/common/constants");
 const Controller = require("./app/modules/logs/controller")
 
 const app = express();
