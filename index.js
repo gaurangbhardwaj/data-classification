@@ -1,12 +1,18 @@
-const APP = require("express");
+const express = require("express");
 const DBConnection = require("./config/dbConnection");
 const Utils = require("./app/utils");
-const routes = require("./routes");
 const { httpConstants } = require("./app/common/constants");
+const Controller = require("./app/modules/logs/controller")
 
-const app = new APP();
+const app = express();
 require("./config/express")(app);
 require("dotenv").config()
+
+app.get("/", (_, res) => res.send(stringConstants.SERVICE_STATUS_HTML));
+
+app.post("/add-log", new Controller().addUserLog);
+
+app.get("/get-logs", new Controller().getUserLogs);
 
 class Server {
   static listen() {
@@ -20,7 +26,6 @@ class Server {
           "Gaurang",
           httpConstants.LOG_LEVEL_TYPE.INFO
         );
-        routes(app);
       })
       .catch((error) =>
         Utils.logger(
