@@ -2,11 +2,11 @@ const express = require("express");
 const DBConnection = require("./config/dbConnection");
 const Utils = require("./app/utils");
 const { httpConstants, stringConstants } = require("./app/common/constants");
-const Controller = require("./app/modules/logs/controller")
+const Controller = require("./app/modules/logs/controller");
 
 const app = express();
 require("./config/express")(app);
-require("dotenv").config()
+require("dotenv").config();
 
 app.get("/", (_, res) => res.send(stringConstants.SERVICE_STATUS_HTML));
 
@@ -40,3 +40,5 @@ class Server {
 }
 
 Server.listen();
+
+module.exports = app;
