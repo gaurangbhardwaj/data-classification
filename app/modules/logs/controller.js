@@ -32,7 +32,13 @@ class Controller {
           httpConstants.RESPONSE_STATUS.FAILURE,
           httpConstants.RESPONSE_CODES.SERVER_ERROR
         );
-      return res.send("hello world");
+      Utils.response(
+        res,
+        response,
+        apiSuccessMessage.LOG_ADDED,
+        httpConstants.RESPONSE_STATUS.SUCCESS,
+        httpConstants.RESPONSE_CODES.OK
+      );
     } catch (err) {
       Utils.response(
         res,
